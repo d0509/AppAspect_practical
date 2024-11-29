@@ -16,9 +16,10 @@ class UserSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('categories')->truncate();
+        
         $user = User::create([
-            'name' => 'Datta Pandya',
-            'email' => 'datta@yopmail.com',
+            'name' => 'Admin User',
+            'email' => 'admin@admin.com',
             'password' => '123'
         ]);
 

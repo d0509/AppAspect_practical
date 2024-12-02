@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
 {
@@ -15,12 +14,13 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('categories')->truncate();
-        
+        DB::table('users')->truncate();
+
+        // Create user and assign roles
         $user = User::create([
             'name' => 'Admin User',
             'email' => 'admin@admin.com',
-            'password' => '123'
+            'password' => '123',
         ]);
 
         $user->assignRole('admin');

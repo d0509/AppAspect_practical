@@ -30,15 +30,15 @@
                 </li>
 
                 <!-- Nav Item - Utilities Collapse Menu -->
-                {{-- <li class="nav-item">
-                    <a class="nav-link {{ Route::currentRouteName() == 'admin.event.index' ? 'active' : '' }} "
-                        href="{{ route('admin.event.index') }}" aria-expanded="true" aria-controls="collapseUtilities">
+                <li class="nav-item">
+                    <a class="nav-link "
+                        href="{{ route('categories.index') }}" aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fa-solid fa-face-smile"></i>
-                        <span>Events</span>
+                        <span>Categories</span>
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'admin.user.index' ? 'active' : '' }} "
                         href="{{ route('admin.user.index') }}" aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="fa-solid fa-user"></i>
@@ -174,8 +174,7 @@
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         My Profile
                                     </a>
-                                    <a class="dropdown-item"
-                                        href="#">
+                                    <a class="dropdown-item" href="#">
                                         <i class="fa-solid fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Change Password
                                     </a>

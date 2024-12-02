@@ -10,7 +10,7 @@
                 <tr>
                     <th>Sr. No.</th>
                     <th>Name</th>
-                    <th>Action</th>
+                    <th>Guard</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,25 +18,7 @@
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $role->name }}</td>
-                        <td>
-                            <?php
-                            $showURL = route('roles.show', ['role' => $role->id]);
-                            $editURL = route('roles.edit', ['role' => $role->id]);
-                            $deleteURL = route('roles.destroy', ['role' => $role->id]);
-                            ?>
-                            <div class="d-flex">
-                                <a href="{{ $showURL }}" class="text-white w-3 btn btn-primary delete_event mr-2">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-                                <a data-eventId="' . $row->id . '" onclick="deleteEvent(' . $row->id . ')"
-                                    class="text-white w-3 btn btn-danger delete_event mr-2">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="{{ $editURL }}" class="text-white w-3 btn btn-primary mr-2">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                            </div>
-                        </td>
+                        <td>{{ $role->guard_name }}</td>
                     </tr>
                 @empty
                     <tr>
@@ -48,47 +30,4 @@
 
         </table>
     </div>
-@endsection
-@section('contentFooter')
-    <script>
-        function deleteEvent(id) {
-            var id = id;
-            // alert(id);
-            var url = "{{ route('roles.destroy', ':id') }}";
-            url = url.replace(':id', id);
-            // alert(url);
-            var token = "{{ csrf_token() }}";
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want to delete this role?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: url,
-                        type: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        dataType: "JSON",
-                        data: {
-                            id: id,
-                            "_token": "{{ csrf_token() }}",
-
-                        },
-                        success: function() {
-                            console.log('deleted successfully');
-
-                            $('#dataTable').DataTable().ajax.reload();
-                        }
-                    });
-                }
-
-            })
-        }
-    </script>
 @endsection

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,5 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-Route::resource('roles',RoleController::class);
+Route::resource('roles',RoleController::class)->only(['index']);
+Route::resource('categories',CategoryController::class);

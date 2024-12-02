@@ -1,16 +1,20 @@
 @extends('admin.master.layout')
-@section('title', $category->name . ' edit')
+@if (isset($category))
+    @section('title', $category->name . ' edit')
+@else
+    @section('title', 'Create Category')
+@endif
 @section('content')
     <div class="container-fluid">
-        @if (!$category)
-            <form action="{{ route('categories.store') }}" method="POST">
-        @endif
-        @csrf
         @if (isset($category))
             <form action="{{ route('categories.update', ['category' => $category]) }}" method="POST">
                 @method('PUT')
                 @csrf
+            @else
+                <form action="{{ route('categories.store') }}" method="POST">
         @endif
+        @csrf
+
         <div class="form-outline mb-4">
             <label class="form-label" for="form7Example1">Event Name</label>
             <input type="text" name="name" id="name" class="form-control " placeholder="Enter event name"

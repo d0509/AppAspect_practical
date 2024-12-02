@@ -28,6 +28,10 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function create(Request $request){
+        return view('admin.pages.category.edit');
+    }
+
     public function store(CategoryRequest $request)
     {
         $this->authorize('create', Category::class);
@@ -56,5 +60,11 @@ class CategoryController extends Controller
         return view('admin.pages.category.edit', [
             'category' => $category,
         ]);
+    }
+
+    public function destroy(Category $category) {
+        $this->authorize('delete', Category::class);
+        $category = $this->categoryService->destroy($category->id);
+        return redirect()->route('categories.index');
     }
 }
